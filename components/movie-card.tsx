@@ -12,6 +12,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
   const clickCount = useRef(0)
 
   const handleClick = () => {
+    console.log("MovieCard clicked")
     clickCount.current += 1
 
     if (clickCount.current === 1) {

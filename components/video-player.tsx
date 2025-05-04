@@ -92,7 +92,7 @@ export default function VideoPlayer({ movie, onClose }: VideoPlayerProps) {
   }
 
   return (
-    <div ref={containerRef} className="fixed inset-0 bg-black z-50 flex flex-col">
+    <div ref={containerRef} className="fixed inset-0 top-0 bg-black z-[90] flex flex-col">
       {/* Video */}
       <div className="relative flex-1 flex items-center justify-center bg-black">
         {/* Demo notification */}
@@ -110,14 +110,15 @@ export default function VideoPlayer({ movie, onClose }: VideoPlayerProps) {
             console.error("Video error:", e)
             setIsPlaying(false)
           }}
+          onClick={togglePlay}
         >
           Your browser does not support the video tag.
         </video>
         {!isPlaying && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/70">
             <div className="text-center p-6">
-              <h3 className="text-xl font-bold mb-2">Video Playback Error</h3>
-              <p className="mb-4">The video could not be loaded. This is a demo application.</p>
+              <h3 className="text-xl font-bold mb-2">Video Paused</h3>
+              <p className="mb-4">The video is paused. This is a demo application.</p>
               <button onClick={togglePlay} className="netflix-button">
                 Try Again
               </button>
@@ -133,16 +134,16 @@ export default function VideoPlayer({ movie, onClose }: VideoPlayerProps) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 bg-black/50 p-2 rounded-full hover:bg-black/80 transition-colors"
+          className="fixed top-4 right-4 z-[9999] bg-black/50 p-2 rounded-full hover:bg-black/80 transition-colors cursor-pointer"
         >
           <X className="h-6 w-6" />
         </button>
       </div>
 
       {/* Controls */}
-      <div className="bg-gray-900 p-4">
+      <div className="bg-gray-900 p-4 fixed bottom-0 left-0 right-0 flex items-center justify-between">
         {/* Progress bar */}
-        <div className="h-1 bg-gray-700 mb-4 cursor-pointer" onClick={handleProgressClick}>
+        <div className="h-1 bg-gray-700 mb-4 cursor-pointer w-full" onClick={handleProgressClick}>
           <div className="h-full bg-red-600" style={{ width: `${progress}%` }}></div>
         </div>
 
