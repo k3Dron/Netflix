@@ -24,23 +24,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleToggle = async () => {
+  const handleToggle = () => {
     const newValue = !toggleOn;
     setToggleOn(newValue);
 
     if (newValue) {
-      try {
-        const response = await fetch("http://127.0.0.1:5000/start", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ toggle: true }),
-        });
-
-        const data = await response.json();
-        console.log("Flask response:", data);
-      } catch (error) {
-        console.error("API error:", error);
-      }
+      window.open("http://127.0.0.1:5000/start", "_blank");
     }
   };
 
